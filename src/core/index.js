@@ -10,13 +10,7 @@ const prepareCore = async () => {
     level: config.LOG_LEVEL,
   });
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
   const db = await prepareDatabase(config, log);
-
-  const foo = await db.stashes.find({});
-  const results = await foo.toArray();
-
-  console.log(results);
 
   return { config, log, delay, db };
 };

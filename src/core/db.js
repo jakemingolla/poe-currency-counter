@@ -47,4 +47,7 @@ const prepareDatabase = async (config, log) => {
 
 module.exports = {
   prepareDatabase,
+  __test: {
+    decorateDatabase,
+  },
 };
