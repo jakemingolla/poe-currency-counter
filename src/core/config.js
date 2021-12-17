@@ -8,7 +8,6 @@ const LOCAL_DEV_CONFIG = [
   { name: 'POE_API_HTTP_ENDPOINT', value: 'https://api.pathofexile.com' },
   { name: 'POE_API_CRAWL_DELAY_MS', value: 2 * 1000, type: 'integer' },
   { name: 'MONGODB_CONNECTION_URI', requiresEnvironmentOverride: true },
-  { name: 'MONGODB_COLLECTION_NAMES', requiresEnvironmentOverride: true },
   { name: 'MONGODB_DATABASE_NAME', requiresEnvironmentOverride: true },
 ];
 
