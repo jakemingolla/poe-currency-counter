@@ -7,14 +7,23 @@ services:
     volumes:
       - mongodb_data:/data/db
     command: mongod --quiet --logpath /dev/null
+  ingest:
+    image: poe-currency-counter-ingest:dev
+    environment:
+      - MONGODB_CONNECTION_URI=mongodb://mongodb:27017
+      - MONGODB_COLLECTION_NAMES=stashes,breadcrumbs
+      - MONGODB_DATABASE_NAME=poe-currency-counter
+    volumes:
+      - ../src:/app/src
+    command: npm run local:ingest
   api-server:
-    image: poe-stash-currency-crawler-api-server:dev
+    image: poe-currency-counter-api-server:dev
     ports:
       - 13778:13778
     environment:
       - MONGODB_CONNECTION_URI=mongodb://mongodb:27017
       - MONGODB_COLLECTION_NAMES=stashes,breadcrumbs
-      - MONGODB_DATABASE_NAME=poe-stash-currency-crawler
+      - MONGODB_DATABASE_NAME=poe-currency-counter
     # NOTE: Volumes are relative to the docker-compose.yaml file
     volumes:
       - ../src:/app/src

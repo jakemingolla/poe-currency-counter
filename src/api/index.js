@@ -1,7 +1,5 @@
 const express = require('express');
 
-const PORT = 13778;
-
 const app = express();
 
 app.get('/ping', (req, res) => {
@@ -13,9 +11,10 @@ app.get('/ping', (req, res) => {
 
 const main = async () => {
   const { config } = await require('../core/index.js');
+  const { APPLICATION_NAME, API_SERVER_HTTP_PORT } = config;
 
-  app.listen(PORT, () => {
-    console.log(`${config.APPLICATION_NAME} running on port ${PORT}.`);
+  app.listen(API_SERVER_HTTP_PORT, () => {
+    console.log(`${APPLICATION_NAME} running on port ${API_SERVER_HTTP_PORT}.`);
   });
 };
 

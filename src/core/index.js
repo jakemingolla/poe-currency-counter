@@ -9,7 +9,8 @@ const prepareCore = async () => {
     name: config.APPLICATION_NAME,
     level: config.LOG_LEVEL,
   });
-  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const delay = (seconds) =>
+    new Promise((resolve) => setTimeout(resolve, seconds * 1000));
   const db = await prepareDatabase(config, log);
 
   return { config, log, delay, db };

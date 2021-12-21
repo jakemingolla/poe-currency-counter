@@ -1,5 +1,7 @@
 FROM node:fermium-alpine3.14
 
+RUN apk add --no-cache curl jq
+
 WORKDIR /app
 
 COPY package*.json ./

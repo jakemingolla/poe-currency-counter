@@ -1,12 +1,31 @@
 const LOCAL_DEV_CONFIG = [
-  { name: 'APPLICATION_NAME', value: 'poe-stash-currency-crawler' },
+  { name: 'APPLICATION_NAME', value: 'poe-currency-counter' },
   { name: 'LOG_LEVEL', value: 'trace' },
   {
     name: 'APPLICATION_CONTACT',
-    value: 'jakemingolla+poe-stash-currency-crawler' + '@gmail' + '.com',
+    value: 'jakemingolla+poe-currency-counter' + '@gmail' + '.com',
   },
-  { name: 'POE_API_HTTP_ENDPOINT', value: 'https://api.pathofexile.com' },
+  {
+    name: 'POE_API_HTTP_ENDPOINT',
+    value: 'https://api.pathofexile.com/public-stash-tabs',
+  },
   { name: 'POE_API_CRAWL_DELAY_MS', value: 2 * 1000, type: 'integer' },
+  {
+    name: 'POE_API_COUNTED_LEAGUE_NAMES',
+    type: 'list:string',
+    value: [
+      'Standard',
+      'Hardcore',
+      'Scourge',
+      'Hardcore Scourge',
+      'Endless Heist (DE004)',
+      'Endless Heist HC (DE005)',
+      'Atlas Invasion (DE008)',
+      'Atlas Invasion HC (DE009)',
+    ].join(','),
+  },
+  { name: 'API_SERVER_HTTP_PORT', value: 13778, type: 'integer' },
+  { name: 'API_SERVER_HTTP_ENDPOINT', value: 'http://api-server:13778' },
   { name: 'MONGODB_CONNECTION_URI', requiresEnvironmentOverride: true },
   { name: 'MONGODB_DATABASE_NAME', requiresEnvironmentOverride: true },
 ];

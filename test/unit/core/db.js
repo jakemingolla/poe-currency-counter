@@ -1,7 +1,8 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 
-const { decorateDatabase } = require('../../../src/core/db').__test;
+const { decorateDatabase, nanosecondsToMilliseconds } =
+  require('../../../src/core/db').__test;
 
 describe('src/core/db', () => {
   let db;
@@ -53,5 +54,9 @@ describe('src/core/db', () => {
     expect(methodStub.callCount).to.equal(1);
     expect(methodStub.firstCall.args).to.deep.equal(args);
     expect(result).to.equal(44);
+  });
+
+  it('can convert nanoseconds to milliseconds', () => {
+    expect(nanosecondsToMilliseconds(1234500000n)).to.equal(1.234);
   });
 });

@@ -1,10 +1,12 @@
 const { MongoClient } = require('mongodb');
 
-const METHODS = ['find', 'findOne', 'updateOne'];
 const COLLECTION_NAMES = ['stashes', 'breadcrumbs'];
+const METHODS = ['find', 'findOne', 'updateOne'];
 
 const nanosecondsToMilliseconds = (nanoseconds) => {
-  return nanoseconds / 1000000000n;
+  // By multiplying and subsequently dividing by 1000,
+  // we will get 4 digits of precision in the result.
+  return Number((nanoseconds * 1000n) / 1000000000n) / 1000;
 };
 
 const decorateDatabase = (db, log) => {
@@ -49,5 +51,6 @@ module.exports = {
   prepareDatabase,
   __test: {
     decorateDatabase,
+    nanosecondsToMilliseconds,
   },
 };
