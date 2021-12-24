@@ -31,7 +31,7 @@ describe('src/core/db', () => {
   afterEach(() => sinon.restore());
 
   it('can decorate the database for synchronous methods', () => {
-    expectedCollection = 'stashes';
+    expectedCollection = 'items';
     expectedMethod = 'find';
     const args = ['42', '43'];
     const db = decorateDatabase(dbStub, logStub);
@@ -43,8 +43,8 @@ describe('src/core/db', () => {
   });
 
   it('can decorate the database for async methods', async () => {
-    expectedCollection = 'breadcrumbs';
-    expectedMethod = 'updateOne';
+    expectedCollection = 'paginationCodes';
+    expectedMethod = 'replaceOne';
     methodStub.resolves(44);
 
     const args = ['42', '43'];

@@ -1,6 +1,6 @@
 const LOCAL_DEV_CONFIG = [
   { name: 'APPLICATION_NAME', value: 'poe-currency-counter' },
-  { name: 'LOG_LEVEL', value: 'trace' },
+  { name: 'LOG_LEVEL', value: 'debug' },
   {
     name: 'APPLICATION_CONTACT',
     value: 'jakemingolla+poe-currency-counter' + '@gmail' + '.com',
@@ -9,7 +9,7 @@ const LOCAL_DEV_CONFIG = [
     name: 'POE_API_HTTP_ENDPOINT',
     value: 'https://api.pathofexile.com/public-stash-tabs',
   },
-  { name: 'POE_API_CRAWL_DELAY_MS', value: 2 * 1000, type: 'integer' },
+  { name: 'POE_API_HTTP_REQUEST_DELAY_SECONDS', value: 2, type: 'integer' },
   {
     name: 'POE_API_COUNTED_LEAGUE_NAMES',
     type: 'list:string',
