@@ -1,4 +1,4 @@
-# poe-stash-currency-crawler
+# poe-currency-counter
 
 Author(s):
 - Jake Mingolla
