@@ -15,10 +15,10 @@ basis using many distinct currencies. These currency items
 can be used to enhance weapons and armor significantly and
 exchange hands between players frequently.
 
-In order to have some sembelence of a stable economy, external
+In order to have some semblance of a stable economy, external
 tools such as [poe.ninja][PoENinja] periodically scrape
 the [public API][PathOfExileTradeAPI] published for ALL in-game
-player stashes to determine which currency has traded hands.
+player stashes to determine which currency has exchanged hands.
 By establishing a (relatively) accurate ledger of currency transactions,
 players can more accurately buy and sell goods in the decentralized
 market and with greater confidence than before these tools existed.
