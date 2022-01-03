@@ -28,6 +28,7 @@ const LOCAL_DEV_CONFIG = [
   { name: 'API_SERVER_HTTP_ENDPOINT', value: 'http://api-server:13778' },
   { name: 'MONGODB_CONNECTION_URI', requiresEnvironmentOverride: true },
   { name: 'MONGODB_DATABASE_NAME', requiresEnvironmentOverride: true },
+  { name: 'SNAPSHOT_FREQUENCY_MINUTES', value: 60, type: 'integer' },
 ];
 
 const prepareConfig = (localDefaults, environmentOverride) => {

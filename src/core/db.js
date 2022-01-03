@@ -1,7 +1,14 @@
 const { MongoClient } = require('mongodb');
 
-const COLLECTION_NAMES = ['items', 'paginationCodes'];
-const METHODS = ['find', 'findOne', 'replaceOne'];
+const COLLECTION_NAMES = ['items', 'paginationCodes', 'snapshots'];
+const METHODS = [
+  'find',
+  'findOne',
+  'insertOne',
+  'replaceOne',
+  'distinct',
+  'aggregate',
+];
 
 const nanosecondsToMilliseconds = (nanoseconds) => {
   // By multiplying and subsequently dividing by 1000,
@@ -44,6 +51,16 @@ const ensureIndexes = (db, log) => {
       {
         background: true,
         unique: true,
+      }
+    ),
+    db.collection('snapshots').createIndex(
+      {
+        league: 1,
+        createdAt: 1,
+        baseType: 1,
+      },
+      {
+        background: true,
       }
     ),
   ]).then(() => log.info('Indexes successfully ensured.'));

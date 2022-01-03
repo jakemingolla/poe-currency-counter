@@ -11,11 +11,14 @@ app.get('/ping', (req, res) => {
 
 const main = async () => {
   const { config } = await require('../core/index.js');
+  const { periodicallyTakeSnapshots } = await require('./snapshot.js');
   const { APPLICATION_NAME, API_SERVER_HTTP_PORT } = config;
 
   app.listen(API_SERVER_HTTP_PORT, () => {
     console.log(`${APPLICATION_NAME} running on port ${API_SERVER_HTTP_PORT}.`);
   });
+
+  periodicallyTakeSnapshots();
 };
 
 main().catch((err) => {

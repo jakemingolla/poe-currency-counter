@@ -65,7 +65,7 @@ const parseItems = (log, stashes, currentPaginationCode) => {
     const stashId = stash.id;
 
     stash.items.forEach((item) => {
-      const { league, stackSize, baseType, extended } = item;
+      const { league, stackSize, baseType, extended, icon } = item;
       const updatedAt = new Date().toISOString();
 
       // Items can be put into a currency stash tab in the main
@@ -79,6 +79,7 @@ const parseItems = (log, stashes, currentPaginationCode) => {
         league,
         stashId,
         baseType,
+        icon,
         // Certain items like prophecies cannot stack,
         // which is equivalent to a single stack from an accounting perspective.
         stackSize: stackSize === undefined ? 1 : stackSize,
@@ -124,9 +125,13 @@ const persistItems = (config, log, db, items) => {
 };
 
 const persistPaginationCode = (config, log, db, paginationCode) => {
-  log.debug(`Attempting to persist pagination code ${paginationCode}.`);
   const updatedAt = new Date().toISOString();
-  const owner = config.APPLICATION_NAME;
+  const owner = config.APPLICATION_NAME + '-ingest';
+
+  log.debug(
+    `Attempting to persist pagination code ${paginationCode} ` +
+      `under owner ${owner}.`
+  );
 
   return db.paginationCodes
     .replaceOne(
@@ -140,9 +145,12 @@ const persistPaginationCode = (config, log, db, paginationCode) => {
 };
 
 const retrievePaginationCode = async (config, log, db) => {
-  const owner = config.APPLICATION_NAME;
+  const owner = config.APPLICATION_NAME + '-ingest';
 
-  log.info(`Attempting to retrieve most recent paginationCode from MongoDB.`);
+  log.info(
+    'Attempting to retrieve most recent paginationCode from MongoDB ' +
+      `using owner ${owner}.`
+  );
 
   const breadcrumb = await db.paginationCodes.findOne({ owner });
 
@@ -167,6 +175,9 @@ const main = async () => {
 
   let workLoopIterations = 0;
   let currentPaginationCode = await retrievePaginationCode(config, log, db);
+
+  // 1 public currency stashes with 12 parseable currency items.
+  //currentPaginationCode = '4869819-5130631-5156262-5529853-4733515';
 
   while (true) {
     const { stashes, nextPaginationCode } = await fetch(

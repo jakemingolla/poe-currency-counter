@@ -11,7 +11,6 @@ services:
     image: poe-currency-counter-ingest:dev
     environment:
       - MONGODB_CONNECTION_URI=mongodb://mongodb:27017
-      - MONGODB_COLLECTION_NAMES=stashes,breadcrumbs
       - MONGODB_DATABASE_NAME=poe-currency-counter
     volumes:
       - ../src:/app/src
@@ -22,7 +21,6 @@ services:
       - 13778:13778
     environment:
       - MONGODB_CONNECTION_URI=mongodb://mongodb:27017
-      - MONGODB_COLLECTION_NAMES=stashes,breadcrumbs
       - MONGODB_DATABASE_NAME=poe-currency-counter
     # NOTE: Volumes are relative to the docker-compose.yaml file
     volumes:

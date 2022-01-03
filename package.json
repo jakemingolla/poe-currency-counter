@@ -17,7 +17,8 @@
     "test:unit": "mocha test/unit/**/*.js",
     "test:unit:core": "mocha test/unit/core/**/*.js",
     "watch": "mocha --reporter min --watch test/unit/**/*.js",
-    "coverage": "nyc mocha test/unit/**/*.js"
+    "coverage": "nyc mocha test/unit/**/*.js",
+    "cli": "node src/cli/index.js"
   },
   "nyc": {
     "all": true,
@@ -31,7 +32,10 @@
   "dependencies": {
     "axios": "^0.24.0",
     "bunyan": "^1.8.15",
+    "cli-chart": "^0.3.1",
     "express": "^4.17.1",
+    "inquirer": "^8.2.0",
+    "moment": "^2.29.1",
     "mongodb": "^4.2.2"
   },
   "devDependencies": {
